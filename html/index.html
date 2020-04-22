@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style type="text/css">
+body {
+  font-family: Courier;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+label {
+  display: block;
+  margin-top: 1em;
+}
+
+label > input {
+  margin-left: 1em;
+}
+
+.grid {
+  margin-top: 1em;
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: 50% 50%;
+}
+
+.grid video {
+  width: 100%;
+  margin: auto 0;
+}
+
+.grid canvas {
+  margin: auto auto;
+  max-width: 100%;
+}
+</style>
+<meta charset="utf-8">
+<title>webRTC + PoseNet</title>
+<body>
+<ul>
+  <li><a href="/broadcaster/index.html">broadcaster</a></li>
+  <li><a href="/viewer/index.html">viewer</a></li>
+</ul>    
+<!-- <div><canvas id='canvas'></canvas></div> -->
+<script src="index.js"></script>
+<div id="label-container"></div>

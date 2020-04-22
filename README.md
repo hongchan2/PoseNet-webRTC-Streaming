@@ -1,7 +1,7 @@
 PoseNet-webRTC-Streaming
 ====================
 
-
+<br>
 
 Usage
 -----
@@ -20,18 +20,17 @@ http://localhost:3000 접속
 4. Do exercise! (only squat)
 ```
 
-
+<br>
 
 References
 ------------
 
 - [node-webrtc-examples](https://github.com/node-webrtc/node-webrtc-examples)
-
 - [Teachable Machine Pose Library](https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries)
 
+<br>
 
-
-
+<br>
 
 > 2020.04.22
 >

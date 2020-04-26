@@ -15,7 +15,21 @@ async function beforeAnswer(peerConnection) {
 
   // ERROR with web view
   // chromium: [INFO:CONSOLE(18)] "Uncaught (in promise) TypeError: peerConnection.addTrack is not a function", source: https://dev.elsiff.me:8443/broadcaster/index.js (18)
-  localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
+  // localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
+  try {
+    localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
+    console.log("addTrack()");
+  }
+  catch(e) {
+    try {
+      console.log("addTrack() Not Work! - try addStream()");
+      peerConnection.addStream(localStream);
+      console.log("addStream()");
+    }
+    catch(e) {
+      console.log("addStream() Not Work! - Fetal ERROR");
+    }
+  }
   
   localVideo.srcObject = localStream;
 

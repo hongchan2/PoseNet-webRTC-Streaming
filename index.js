@@ -64,7 +64,7 @@ if (useHttps) {
 } else {
   server = http.createServer(app);
 }
-server.listen(3000, () => {
+server.listen(process.env.PORT || 3000, () => {
   const address = server.address();
   console.log((useHttps ? 'https' : 'http') + `://localhost:${address.port}\n`);
 

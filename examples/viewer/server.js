@@ -3,17 +3,15 @@
 const { broadcaster } = require('../broadcaster/server')
 
 function beforeOffer(peerConnection) {
-  const audioTransceiver = peerConnection.addTransceiver('audio');
   const videoTransceiver = peerConnection.addTransceiver('video');
   
-  function onNewBroadcast({ audioTrack, videoTrack }) {
-    audioTransceiver.sender.replaceTrack(audioTrack),
+  function onNewBroadcast({ videoTrack }) {
     videoTransceiver.sender.replaceTrack(videoTrack) 
   }
 
   broadcaster.on('newBroadcast', onNewBroadcast)
 
-  if (broadcaster.audioTrack && broadcaster.videoTrack) {
+  if (broadcaster.videoTrack) {
     onNewBroadcast(broadcaster);
   }
 

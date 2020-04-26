@@ -22,6 +22,10 @@ async function beforeAnswer(peerConnection) {
     remoteVideo.srcObject = null;
     return close.apply(this, arguments);
   };
+
+  /*
+    DataChannel
+  */
 }
 
 createExample('viewer', description, { beforeAnswer });
@@ -128,3 +132,10 @@ function drawPose(pose) {
       tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
   }
 }
+
+
+/*
+  webRTC DataChannel 추가한 부분
+*/
+
+

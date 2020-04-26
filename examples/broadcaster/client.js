@@ -10,12 +10,13 @@ localVideo.muted = true;
 
 async function beforeAnswer(peerConnection) {
   const localStream = await window.navigator.mediaDevices.getUserMedia({
-    audio: true,
     video: true
   });
 
+  // ERROR with web view
+  // chromium: [INFO:CONSOLE(18)] "Uncaught (in promise) TypeError: peerConnection.addTrack is not a function", source: https://dev.elsiff.me:8443/broadcaster/index.js (18)
   localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
-
+  
   localVideo.srcObject = localStream;
 
   // NOTE(mroberts): This is a hack so that we can get a callback when the

@@ -3,7 +3,9 @@
 const bodyParser = require('body-parser');
 const browserify = require('browserify-middleware');
 const express = require('express');
-const { readdirSync, statSync } = require('fs');
+const http = require('http');
+const https = require('https');
+const { readdirSync, statSync, readFileSync } = require('fs');
 const { join } = require('path');
 
 
@@ -51,9 +53,20 @@ const connectionManagers = examples.reduce((connectionManagers, example) => {
   return connectionManagers.set(example, connectionManager);
 }, new Map());
 
-const server = app.listen(3000, () => {
+let server;
+const useHttps = process.env.HTTPS && process.env.HTTPS.toLowerCase() === 'true';
+if (useHttps) {
+  const options = {
+    key: readFileSync('./ssl/key.pem'),
+    cert: readFileSync('./ssl/cert.pem'),
+  }
+  server = https.createServer(options, app);
+} else {
+  server = http.createServer(app);
+}
+server.listen(3000, () => {
   const address = server.address();
-  console.log(`http://localhost:${address.port}\n`);
+  console.log((useHttps ? 'https' : 'http') + `://localhost:${address.port}\n`);
 
   server.once('close', () => {
     connectionManagers.forEach(connectionManager => connectionManager.close());
